@@ -76,7 +76,6 @@
 
     .page-slot {
       flex: 1;
-      aspect-ratio: 1055 / 1491;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -290,7 +289,7 @@
       #book { flex-direction: column; }
       #book::after { display: none; }
       #right-page { display: none !important; }
-      .page-slot { aspect-ratio: unset; min-height: unset; }
+      .page-slot { min-height: unset; }
       #hint { display: none; }
       .thumb { width: 44px; height: 58px; }
     }
@@ -672,8 +671,22 @@
     if (Math.abs(dx) > 50) changePage(dx < 0 ? 1 : -1);
   });
 
-  window.addEventListener('resize', () => { buildThumbnails(); render(); });
+  /* 만화 원본 비율(1055×1491)에 맞게 슬롯 높이 고정 */
+  const PAGE_RATIO = 1491 / 1055;
+  function fixSlotHeight() {
+    const book = document.getElementById('book');
+    const numSlots = isMobile() ? 1 : 2;
+    const slotWidth = book.offsetWidth / numSlots;
+    const h = Math.round(slotWidth * PAGE_RATIO);
+    document.querySelectorAll('.page-slot').forEach(slot => {
+      slot.style.height    = h + 'px';
+      slot.style.maxHeight = h + 'px';
+    });
+  }
 
+  window.addEventListener('resize', () => { fixSlotHeight(); buildThumbnails(); render(); });
+
+  fixSlotHeight();
   buildThumbnails();
   render();
 </script>
