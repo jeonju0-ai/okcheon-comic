@@ -32,7 +32,6 @@
       margin-top: 4px;
     }
 
-    /* 책 컨테이너 */
     #book-container {
       display: flex;
       align-items: center;
@@ -62,7 +61,6 @@
     .nav-btn:hover { background: #5a3520; }
     .nav-btn:disabled { opacity: 0.3; cursor: default; }
 
-    /* 책 펼침 영역 */
     #book {
       display: flex;
       gap: 0;
@@ -73,6 +71,7 @@
       overflow: hidden;
       max-width: 900px;
       width: 100%;
+      position: relative;
     }
 
     .page-slot {
@@ -84,9 +83,9 @@
       min-height: 500px;
       position: relative;
       background: #f5f0e8;
+      overflow-y: auto;
     }
 
-    /* 책 가운데 바인딩 선 */
     #book::after {
       content: '';
       position: absolute;
@@ -98,7 +97,6 @@
       pointer-events: none;
       z-index: 2;
     }
-    #book { position: relative; }
 
     .page-slot img {
       width: 100%;
@@ -107,36 +105,135 @@
       display: block;
     }
 
-    .page-slot.empty {
-      background: #e8e0d0;
+    .page-slot.empty { background: #e8e0d0; }
+
+    /* ── HTML 텍스트 페이지 스타일 ── */
+    .text-page {
+      width: 100%;
+      min-height: 100%;
+      padding: 28px 24px;
+      background: #f5f0e8;
+      color: #2a1808;
+      font-family: 'Noto Serif KR', Georgia, serif;
     }
-    .page-slot.empty::after {
-      content: '';
+    .text-page h2 {
+      font-size: 1.15rem;
+      color: #6a2010;
+      text-align: center;
+      border-bottom: 2px solid #c4943a;
+      padding-bottom: 10px;
+      margin-bottom: 18px;
+      letter-spacing: 0.08em;
+    }
+    .text-page h3 {
+      font-size: 0.95rem;
+      color: #5a3010;
+      margin: 14px 0 6px;
+      border-left: 3px solid #c4943a;
+      padding-left: 8px;
+    }
+    .text-page p {
+      font-size: 0.82rem;
+      line-height: 1.75;
+      color: #3a2010;
+      margin-bottom: 8px;
+    }
+    .text-page .source-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      background: #c4943a;
+      color: #fff;
+      padding: 1px 6px;
+      border-radius: 3px;
+      margin-left: 4px;
+      vertical-align: middle;
+    }
+    .text-page .oral-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      background: #7a5030;
+      color: #f0e6d3;
+      padding: 1px 6px;
+      border-radius: 3px;
+      margin-left: 4px;
+      vertical-align: middle;
+    }
+    .text-page .divider {
+      border: none;
+      border-top: 1px dashed #c4943a;
+      margin: 14px 0;
+    }
+    .text-page .person-card {
+      background: #ede5d0;
+      border: 1px solid #c4943a;
+      border-radius: 6px;
+      padding: 12px 14px;
+      margin-bottom: 12px;
+    }
+    .text-page .person-name {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #6a2010;
+    }
+    .text-page .person-year {
+      font-size: 0.75rem;
+      color: #8a6040;
+      margin-left: 8px;
+    }
+    .text-page .message-box {
+      background: #2a1808;
+      color: #d4a843;
+      text-align: center;
+      padding: 12px;
+      border-radius: 4px;
+      font-size: 0.88rem;
+      margin-top: 16px;
+      font-style: italic;
+      letter-spacing: 0.05em;
     }
 
-    /* 표지 페이지 (혼자 전체 너비) */
-    #book.cover-mode .page-slot {
-      flex: 1;
+    /* 가계도 스타일 */
+    .tree-wrap { padding: 4px 0; }
+    .tree-node {
+      display: flex;
+      align-items: center;
+      margin: 4px 0;
     }
-    #book.cover-mode .page-slot.hidden {
-      display: none;
+    .tree-indent { width: 20px; flex-shrink: 0; }
+    .tree-line { color: #c4943a; font-size: 1rem; margin-right: 4px; }
+    .tree-label {
+      font-size: 0.78rem;
+      background: #ede5d0;
+      border: 1px solid #c4943a;
+      border-radius: 4px;
+      padding: 3px 8px;
+      color: #3a2010;
+      line-height: 1.4;
+    }
+    .tree-label.highlight {
+      background: #c4943a;
+      color: #fff;
+      font-weight: bold;
+    }
+    .tree-label.oral {
+      border-color: #9a7050;
+      background: #e8dcc8;
+      color: #6a4020;
+    }
+    .tree-connector {
+      font-size: 0.7rem;
+      color: #9a7050;
+      margin-left: 6px;
     }
 
-    /* 페이지 번호 표시 */
     #page-info {
       text-align: center;
       padding: 12px;
       color: #a08060;
       font-size: 0.9rem;
     }
+    #page-title { color: #d4a843; font-size: 1rem; margin-bottom: 4px; }
 
-    #page-title {
-      color: #d4a843;
-      font-size: 1rem;
-      margin-bottom: 4px;
-    }
-
-    /* 키보드 힌트 */
     #hint {
       font-size: 0.78rem;
       color: #6a5040;
@@ -144,7 +241,6 @@
       padding-bottom: 20px;
     }
 
-    /* 썸네일 바 */
     #thumbnails {
       display: flex;
       flex-wrap: nowrap;
@@ -172,8 +268,21 @@
     .thumb:hover { opacity: 0.9; }
     .thumb.active { border-color: #d4a843; opacity: 1; }
     .thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .thumb-text {
+      width: 100%;
+      height: 100%;
+      background: #ede5d0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6rem;
+      color: #6a2010;
+      text-align: center;
+      padding: 4px;
+      line-height: 1.3;
+      font-family: serif;
+    }
 
-    /* 모바일: 세로 1페이지씩 */
     @media (max-width: 768px) {
       #book-container { gap: 6px; padding: 8px; }
       .nav-btn { width: 36px; height: 36px; font-size: 1.4rem; }
@@ -194,12 +303,10 @@
 
 <div id="book-container">
   <button class="nav-btn" id="prev-btn" onclick="changePage(-1)">&#8249;</button>
-
   <div id="book">
     <div class="page-slot" id="left-page"></div>
     <div class="page-slot" id="right-page"></div>
   </div>
-
   <button class="nav-btn" id="next-btn" onclick="changePage(1)">&#8250;</button>
 </div>
 
@@ -213,17 +320,213 @@
 <div id="hint">← → 방향키 또는 버튼으로 넘기기 &nbsp;|&nbsp; 아래 그림 클릭으로 바로 이동</div>
 
 <script>
+
+  /* ── HTML 텍스트 페이지 콘텐츠 정의 ── */
+
+  const HTML_가계도 = `
+<div class="text-page">
+  <h2>옥천전씨 모산파 — 가계도</h2>
+  <div class="tree-wrap">
+
+    <div class="tree-node">
+      <span class="tree-label oral">전섭(全聶) — 도시조, 환성군</span>
+      <span class="tree-connector">백제 온조왕 개국공신</span>
+      <span class="oral-tag">구전</span>
+    </div>
+    <div class="tree-node"><span class="tree-indent"></span><span class="tree-line">↓ (23세손)</span></div>
+
+    <div class="tree-node">
+      <span class="tree-label">전학준(全學浚) — 시조</span>
+      <span class="tree-connector">고려, 동정(同正)</span>
+      <span class="source-tag">족보</span>
+    </div>
+    <div class="tree-node"><span class="tree-indent"></span><span class="tree-line">↓ (5세손)</span></div>
+
+    <div class="tree-node">
+      <span class="tree-label highlight">전유(全侑) — 중시조, 관성군</span>
+      <span class="tree-connector">고려 충숙왕, 판도판서</span>
+      <span class="source-tag">한국학중앙연구원</span>
+    </div>
+    <div class="tree-node"><span class="tree-indent"></span><span class="tree-line">↓ 세 아들로 분파</span></div>
+
+    <div class="tree-node">
+      <span class="tree-label">전광운 — 전서공파 파조 (장남)</span>
+      <span class="source-tag">족보·한국학중앙연구원</span>
+    </div>
+    <div class="tree-node"><span class="tree-indent"></span><span class="tree-line">↓</span></div>
+
+    <div class="tree-node">
+      <span class="tree-label">전희철(全希哲) 1425~1521</span>
+      <span class="tree-connector">단종 폐위 후 낙향, 절의</span>
+      <span class="source-tag">한국민족문화대백과</span>
+    </div>
+    <div class="tree-node"><span class="tree-indent"></span><span class="tree-line">↓</span></div>
+
+    <div class="tree-node">
+      <span class="tree-label">전결(全潔) — 모산파 형성</span>
+      <span class="tree-connector">16세기 말, 충북 영동군 모산리 정착</span>
+      <span class="source-tag">충북학아카이브</span>
+    </div>
+    <div class="tree-node"><span class="tree-indent"></span><span class="tree-line">↓ (조선 후기)</span></div>
+
+    <div class="tree-node">
+      <span class="tree-label oral">파파실(파곡) 입향</span>
+      <span class="tree-connector">장수군 소금업 → 계북면 정착, 150년 전</span>
+      <span class="oral-tag">구전·지역사</span>
+    </div>
+    <div class="tree-node"><span class="tree-indent"></span><span class="tree-line">↓</span></div>
+
+    <div class="tree-node">
+      <span class="tree-label">24세손 재현(在賢)</span>
+      <span class="source-tag">파파실-옥천전씨 기록</span>
+    </div>
+    <div class="tree-node"><span class="tree-indent"></span><span class="tree-line">↓</span></div>
+
+    <div class="tree-node">
+      <span class="tree-label">28대 — 구(九) 항렬</span>
+    </div>
+    <div class="tree-node"><span class="tree-indent"></span><span class="tree-line">↓</span></div>
+    <div class="tree-node">
+      <span class="tree-label">29대 — 병(炳) 항렬</span>
+    </div>
+    <div class="tree-node"><span class="tree-indent"></span><span class="tree-line">↓</span></div>
+    <div class="tree-node">
+      <span class="tree-label highlight">30대 — 규(圭)·종(鐘) 항렬 (현재)</span>
+    </div>
+
+  </div>
+  <div class="message-box">백제의 개국부터 오늘까지 — 우린 하나다</div>
+  <p style="font-size:0.68rem; color:#9a7050; margin-top:10px; text-align:center;">
+    ✅ 객관적 출처 확인 &nbsp;|&nbsp; 🟤 구전·문중 전승
+  </p>
+</div>`;
+
+  const HTML_비석 = `
+<div class="text-page">
+  <h2>비석에 새겨진 두 이름</h2>
+  <p style="text-align:center; font-size:0.8rem; color:#8a6040; margin-bottom:16px;">
+    1925년, 서울 이문동 <span class="source-tag">객관적 사실</span>
+  </p>
+
+  <div class="person-card">
+    <div>
+      <span class="person-name">전씨 시조 단소(壇所) 건립</span>
+    </div>
+    <p style="margin-top:8px;">
+      1925년, 서울 이문동에 전씨 시조를 기리는 단소가 세워졌습니다.
+      이 비석의 비문(碑文)을 지은 사람과 글씨를 쓴 사람이 주목됩니다.
+    </p>
+  </div>
+
+  <hr class="divider">
+
+  <div class="person-card">
+    <div>
+      <span class="person-name">의친왕 이강(李堈)</span>
+      <span class="person-year">비문 찬(撰)</span>
+    </div>
+    <p style="margin-top:6px;">
+      고종 황제의 아들. 대한제국 황실의 일원으로,
+      전씨 가문의 역사적 위상을 인정하여 직접 비문을 지었습니다.
+    </p>
+  </div>
+
+  <div class="person-card">
+    <div>
+      <span class="person-name">위창 오세창(吳世昌)</span>
+      <span class="person-year">글씨 서(書)</span>
+    </div>
+    <p style="margin-top:6px;">
+      3·1운동 민족대표 33인 중 한 사람이자 서예가·독립운동가.
+      그의 글씨로 비석이 완성되었습니다.
+    </p>
+  </div>
+
+  <hr class="divider">
+
+  <p style="font-size:0.8rem; line-height:1.8;">
+    황실의 왕자가 비문을 짓고, 독립운동가가 글씨를 쓴 이 비석은
+    전씨 가문이 단순한 지방 성씨를 넘어 근대 한국사의 한 장면에
+    함께 새겨져 있음을 보여줍니다.
+  </p>
+
+  <div class="message-box">"가문의 이름이 역사에 새겨지다"</div>
+
+  <p style="font-size:0.7rem; color:#9a7050; margin-top:12px;">
+    출처: 문중 기록·전씨 족보 관련 자료
+  </p>
+</div>`;
+
+  const HTML_조선인물 = `
+<div class="text-page">
+  <h2>조선의 세 가지 충(忠)</h2>
+  <p style="text-align:center; font-size:0.78rem; color:#8a6040; margin-bottom:16px;">
+    전서공파 계통의 인물들 <span class="source-tag">한국민족문화대백과</span>
+  </p>
+
+  <div class="person-card">
+    <div>
+      <span class="person-name">전희철(全希哲)</span>
+      <span class="person-year">1425 ~ 1521</span>
+    </div>
+    <p style="margin-top:8px; font-size:0.8rem; line-height:1.7;">
+      단종이 폐위되던 날, 벼슬을 버리고 낙향했습니다.
+      영주 칠성루와 휴계재사에서 여생을 마쳤으며,
+      후대에 그의 절의(節義)가 추모되었습니다.
+    </p>
+    <p style="font-size:0.75rem; color:#7a5030; font-style:italic; margin-top:6px;">
+      "뜻을 굽히지 않는 것도 충이다"
+    </p>
+  </div>
+
+  <div class="person-card">
+    <div>
+      <span class="person-name">전팽령(全彭齡)</span>
+      <span class="person-year">1480 ~ 1560 &nbsp; 호: 송정(松亭)</span>
+    </div>
+    <p style="margin-top:8px; font-size:0.8rem; line-height:1.7;">
+      1524년 별시문과 급제 후 형조·공조·성균관사성 등을 역임.
+      상주목사 재임 시 청렴한 치정으로
+      <strong>청백리(廉謹)</strong>에 선발되었습니다.
+    </p>
+    <p style="font-size:0.75rem; color:#7a5030; font-style:italic; margin-top:6px;">
+      "가장 가난한 목사가 가장 존경받았다"
+    </p>
+  </div>
+
+  <div class="person-card">
+    <div>
+      <span class="person-name">전식(全湜)</span>
+      <span class="person-year">1563 ~ 1642 &nbsp; 호: 사서(沙西)</span>
+    </div>
+    <p style="margin-top:8px; font-size:0.8rem; line-height:1.7;">
+      유성룡·장현광의 문인. 임진왜란 때 <strong>의병을 일으켰으며</strong>
+      이후 예조정랑·대사간·예조참판·대사헌을 역임.
+      문집과 영정, 신도비가 현재까지 전해집니다.
+    </p>
+    <p style="font-size:0.75rem; color:#7a5030; font-style:italic; margin-top:6px;">
+      "나라가 흔들릴 때 전씨는 일어섰다"
+    </p>
+  </div>
+
+  <div class="message-box">각자의 방식으로 — 그러나 같은 뿌리에서</div>
+</div>`;
+
+  /* ── 페이지 목록 ── */
   const pages = [
-    { src: '표지_모산파.png', label: '표지' },
-    { src: '옥천전씨모산파역사만화1.png', label: '1화' },
-    { src: '옥천전씨모산파역사만화2.png', label: '2화' },
-    { src: '옥천전씨모산파역사만화3.png', label: '3화' },
-    { src: '옥천전씨모산파역사만화4.png', label: '4화' },
-    { src: '옥천전씨모산파역사만화5.png', label: '5화' },
-    { src: '옥천전씨모산파역사만화6.png', label: '6화' },
-    { src: '옥천전씨모산파역사만화7.png', label: '7화' },
-    { src: '옥천전씨모산파역사만화8.png', label: '8화' },
-    { src: '옥천전씨모산파역사만화9.png', label: '9화' },
+    { src: '표지_모산파.png',              label: '표지' },
+    { type: 'html', html: HTML_가계도,     label: '가계도' },
+    { src: '옥천전씨모산파역사만화1.png',  label: '1화' },
+    { src: '옥천전씨모산파역사만화2.png',  label: '2화' },
+    { src: '옥천전씨모산파역사만화3.png',  label: '3화' },
+    { type: 'html', html: HTML_비석,       label: '비석' },
+    { src: '옥천전씨모산파역사만화4.png',  label: '4화' },
+    { src: '옥천전씨모산파역사만화5.png',  label: '5화' },
+    { src: '옥천전씨모산파역사만화6.png',  label: '6화' },
+    { src: '옥천전씨모산파역사만화7.png',  label: '7화' },
+    { src: '옥천전씨모산파역사만화8.png',  label: '8화' },
+    { type: 'html', html: HTML_조선인물,   label: '인물' },
+    { src: '옥천전씨모산파역사만화9.png',  label: '9화' },
     { src: '옥천전씨모산파역사만화10.png', label: '10화' },
     { src: '옥천전씨모산파역사만화11.png', label: '11화' },
     { src: '옥천전씨모산파역사만화12.png', label: '12화' },
@@ -231,11 +534,29 @@
     { src: '옥천전씨모산파역사만화14.png', label: '14화' },
   ];
 
-  // 모바일 여부 판단
   function isMobile() { return window.innerWidth <= 768; }
 
-  // ── 데스크탑: 2페이지 펼침 모드 ──
-  // spread 0: 초상화(왼쪽) + 표지(오른쪽), spread n: pages[2n-1] + pages[2n]
+  /* ── 슬롯 렌더 헬퍼 ── */
+  function renderSlot(slot, page) {
+    if (!page) {
+      slot.innerHTML = '';
+      slot.className = 'page-slot empty';
+      slot.style.display = 'none';
+      return;
+    }
+    slot.style.display = '';
+    if (page.type === 'html') {
+      slot.innerHTML = page.html;
+      slot.className = 'page-slot';
+      slot.style.overflowY = 'auto';
+    } else {
+      slot.innerHTML = `<img src="${page.src}" alt="${page.label}">`;
+      slot.className = 'page-slot';
+      slot.style.overflowY = '';
+    }
+  }
+
+  /* ── 데스크탑: 2페이지 펼침 ── */
   const portraitPage = { src: '전유_관성군.jpg', label: '전유 관성군' };
   function getSpreadPages(spread) {
     if (spread === 0) return [portraitPage, pages[0]];
@@ -244,63 +565,48 @@
   }
   const totalSpreads = Math.ceil((pages.length - 1) / 2) + 1;
 
-  // 현재 위치
-  let currentSpread = 0; // 데스크탑용
-  let currentPage = 0;   // 모바일용
+  let currentSpread = 0;
+  let currentPage   = 0;
 
   function render() {
-    const leftSlot = document.getElementById('left-page');
+    const leftSlot  = document.getElementById('left-page');
     const rightSlot = document.getElementById('right-page');
 
     if (isMobile()) {
-      // 모바일: 1페이지씩, 왼쪽 슬롯만 사용
       rightSlot.style.display = 'none';
-      leftSlot.style.display = '';
+      leftSlot.style.display  = '';
       const p = pages[currentPage];
-      leftSlot.innerHTML = `<img src="${p.src}" alt="${p.label}" style="width:100%;height:auto;display:block;">`;
-      leftSlot.className = 'page-slot';
+      if (p.type === 'html') {
+        leftSlot.innerHTML = p.html;
+        leftSlot.className = 'page-slot';
+        leftSlot.style.overflowY = 'auto';
+      } else {
+        leftSlot.innerHTML = `<img src="${p.src}" alt="${p.label}" style="width:100%;height:auto;display:block;">`;
+        leftSlot.className = 'page-slot';
+        leftSlot.style.overflowY = '';
+      }
 
       document.getElementById('prev-btn').disabled = currentPage === 0;
       document.getElementById('next-btn').disabled = currentPage >= pages.length - 1;
       document.getElementById('page-title').textContent = p.label;
-      document.getElementById('page-num').textContent = `${currentPage + 1} / ${pages.length}`;
+      document.getElementById('page-num').textContent   = `${currentPage + 1} / ${pages.length}`;
 
-      // 썸네일
       document.querySelectorAll('.thumb').forEach((el, i) => {
         el.classList.toggle('active', i === currentPage);
         if (i === currentPage) el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
       });
 
     } else {
-      // 데스크탑: 2페이지 펼침
-      rightSlot.style.display = '';
-      leftSlot.style.display = '';
       const [left, right] = getSpreadPages(currentSpread);
-
-      if (left) {
-        leftSlot.innerHTML = `<img src="${left.src}" alt="${left.label}">`;
-        leftSlot.className = 'page-slot';
-        leftSlot.style.display = '';
-      } else {
-        leftSlot.innerHTML = '';
-        leftSlot.className = 'page-slot empty';
-        leftSlot.style.display = 'none';
-      }
-      if (right) {
-        rightSlot.innerHTML = `<img src="${right.src}" alt="${right.label}">`;
-        rightSlot.className = 'page-slot';
-        rightSlot.style.display = '';
-      } else {
-        rightSlot.innerHTML = '';
-        rightSlot.className = 'page-slot empty';
-        rightSlot.style.display = 'none';
-      }
+      renderSlot(leftSlot,  left);
+      renderSlot(rightSlot, right);
 
       document.getElementById('prev-btn').disabled = currentSpread === 0;
       document.getElementById('next-btn').disabled = currentSpread >= totalSpreads - 1;
-      const ll = left ? left.label : '', rl = right ? right.label : '';
+      const ll = left  ? left.label  : '';
+      const rl = right ? right.label : '';
       document.getElementById('page-title').textContent = ll && rl ? `${ll} · ${rl}` : (rl || ll);
-      document.getElementById('page-num').textContent = `${currentSpread + 1} / ${totalSpreads}`;
+      document.getElementById('page-num').textContent   = `${currentSpread + 1} / ${totalSpreads}`;
 
       document.querySelectorAll('.thumb').forEach((el, i) => {
         el.classList.toggle('active', i === currentSpread);
@@ -318,7 +624,13 @@
     render();
   }
 
-  // 썸네일 생성 (모바일: 페이지별, 데스크탑: spread별)
+  /* ── 썸네일 생성 ── */
+  function thumbInner(page) {
+    if (!page) return '';
+    if (page.type === 'html') return `<div class="thumb-text">${page.label}</div>`;
+    return `<img src="${page.src}" alt="${page.label}">`;
+  }
+
   function buildThumbnails() {
     const bar = document.getElementById('thumbnails');
     bar.innerHTML = '';
@@ -327,39 +639,37 @@
         const thumb = document.createElement('div');
         thumb.className = 'thumb';
         thumb.title = p.label;
-        thumb.innerHTML = `<img src="${p.src}" alt="${p.label}">`;
+        thumb.innerHTML = thumbInner(p);
         thumb.addEventListener('click', () => { currentPage = i; render(); });
         bar.appendChild(thumb);
       });
     } else {
       for (let i = 0; i < totalSpreads; i++) {
         const [left, right] = getSpreadPages(i);
-        const thumb = document.createElement('div');
+        const display = right || left;
+        const label   = !left ? right.label : !right ? left.label : `${left.label}·${right.label}`;
+        const thumb   = document.createElement('div');
         thumb.className = 'thumb';
-        const label = !left ? right.label : !right ? left.label : `${left.label}·${right.label}`;
         thumb.title = label;
-        thumb.innerHTML = `<img src="${right ? right.src : left.src}" alt="${label}">`;
+        thumb.innerHTML = thumbInner(display);
         thumb.addEventListener('click', () => { currentSpread = i; render(); });
         bar.appendChild(thumb);
       }
     }
   }
 
-  // 키보드
   document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowLeft') changePage(-1);
+    if (e.key === 'ArrowLeft')  changePage(-1);
     if (e.key === 'ArrowRight') changePage(1);
   });
 
-  // 터치 스와이프
   let touchStartX = 0;
   document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
-  document.addEventListener('touchend', e => {
+  document.addEventListener('touchend',   e => {
     const dx = e.changedTouches[0].clientX - touchStartX;
     if (Math.abs(dx) > 50) changePage(dx < 0 ? 1 : -1);
   });
 
-  // 화면 크기 변경 시 재구성
   window.addEventListener('resize', () => { buildThumbnails(); render(); });
 
   buildThumbnails();
