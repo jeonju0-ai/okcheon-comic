@@ -76,11 +76,11 @@
 
     .page-slot {
       flex: 1;
+      aspect-ratio: 1055 / 1491;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 500px;
       position: relative;
       background: #f5f0e8;
       overflow-y: auto;
@@ -290,7 +290,7 @@
       #book { flex-direction: column; }
       #book::after { display: none; }
       #right-page { display: none !important; }
-      .page-slot { min-height: unset; }
+      .page-slot { aspect-ratio: unset; min-height: unset; }
       #hint { display: none; }
       .thumb { width: 44px; height: 58px; }
     }
