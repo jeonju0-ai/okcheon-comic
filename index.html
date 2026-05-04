@@ -235,9 +235,10 @@
   function isMobile() { return window.innerWidth <= 768; }
 
   // ── 데스크탑: 2페이지 펼침 모드 ──
-  // spread 0: 표지 단독, spread n: pages[2n-1] + pages[2n]
+  // spread 0: 초상화(왼쪽) + 표지(오른쪽), spread n: pages[2n-1] + pages[2n]
+  const portraitPage = { src: '전유_관성군.jpg', label: '전유 관성군' };
   function getSpreadPages(spread) {
-    if (spread === 0) return [null, pages[0]];
+    if (spread === 0) return [portraitPage, pages[0]];
     const l = 2 * spread - 1, r = 2 * spread;
     return [l < pages.length ? pages[l] : null, r < pages.length ? pages[r] : null];
   }
