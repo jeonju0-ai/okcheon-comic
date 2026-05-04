@@ -174,12 +174,13 @@
     .thumb img { width: 100%; height: 100%; object-fit: cover; }
 
     /* 모바일: 세로 1페이지씩 */
-    @media (max-width: 700px) {
+    @media (max-width: 768px) {
       #book-container { gap: 6px; padding: 8px; }
       .nav-btn { width: 36px; height: 36px; font-size: 1.4rem; }
       #book { flex-direction: column; }
-      #right-page { display: none; }
-      .page-slot { min-height: 300px; }
+      #book::after { display: none; }
+      #right-page { display: none !important; }
+      .page-slot { min-height: unset; }
       #hint { display: none; }
       .thumb { width: 44px; height: 58px; }
     }
@@ -212,7 +213,6 @@
 <div id="hint">← → 방향키 또는 버튼으로 넘기기 &nbsp;|&nbsp; 아래 그림 클릭으로 바로 이동</div>
 
 <script>
-  // 페이지 순서: 표지 → 만화 0~14
   const pages = [
     { src: '표지_모산파.png', label: '표지' },
     { src: '옥천전씨모산파역사만화0.png', label: '1화' },
@@ -232,94 +232,112 @@
     { src: '옥천전씨모산파역사만화14.png', label: '15화' },
   ];
 
-  // 책 펼침: 짝수 인덱스가 왼쪽, 홀수가 오른쪽
-  // 0(표지)는 오른쪽 한 장만
-  let currentSpread = 0; // 0 = 표지, 1 = 1~2화, 2 = 3~4화 ...
+  // 모바일 여부 판단
+  function isMobile() { return window.innerWidth <= 768; }
 
-  // spread → 실제 페이지 인덱스 계산
-  // spread 0: 표지(0) 단독
-  // spread 1: pages[1], pages[2]
-  // spread n(n>=1): pages[2n-1], pages[2n]
+  // ── 데스크탑: 2페이지 펼침 모드 ──
+  // spread 0: 표지 단독, spread n: pages[2n-1] + pages[2n]
   function getSpreadPages(spread) {
-    if (spread === 0) return [null, pages[0]]; // 표지는 오른쪽
-    const left = 2 * spread - 1;
-    const right = 2 * spread;
-    return [
-      left < pages.length ? pages[left] : null,
-      right < pages.length ? pages[right] : null,
-    ];
+    if (spread === 0) return [null, pages[0]];
+    const l = 2 * spread - 1, r = 2 * spread;
+    return [l < pages.length ? pages[l] : null, r < pages.length ? pages[r] : null];
   }
+  const totalSpreads = Math.ceil((pages.length - 1) / 2) + 1;
 
-  const totalSpreads = Math.ceil((pages.length - 1) / 2) + 1; // +1 for cover
+  // 현재 위치
+  let currentSpread = 0; // 데스크탑용
+  let currentPage = 0;   // 모바일용
 
   function render() {
-    const [left, right] = getSpreadPages(currentSpread);
     const leftSlot = document.getElementById('left-page');
     const rightSlot = document.getElementById('right-page');
-    const book = document.getElementById('book');
 
-    // 왼쪽 페이지
-    if (left) {
-      leftSlot.innerHTML = `<img src="${left.src}" alt="${left.label}">`;
+    if (isMobile()) {
+      // 모바일: 1페이지씩, 왼쪽 슬롯만 사용
+      rightSlot.style.display = 'none';
+      leftSlot.style.display = '';
+      const p = pages[currentPage];
+      leftSlot.innerHTML = `<img src="${p.src}" alt="${p.label}" style="width:100%;height:auto;display:block;">`;
       leftSlot.className = 'page-slot';
+
+      document.getElementById('prev-btn').disabled = currentPage === 0;
+      document.getElementById('next-btn').disabled = currentPage >= pages.length - 1;
+      document.getElementById('page-title').textContent = p.label;
+      document.getElementById('page-num').textContent = `${currentPage + 1} / ${pages.length}`;
+
+      // 썸네일
+      document.querySelectorAll('.thumb').forEach((el, i) => {
+        el.classList.toggle('active', i === currentPage);
+        if (i === currentPage) el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      });
+
     } else {
-      leftSlot.innerHTML = '';
-      leftSlot.className = 'page-slot empty';
+      // 데스크탑: 2페이지 펼침
+      rightSlot.style.display = '';
+      leftSlot.style.display = '';
+      const [left, right] = getSpreadPages(currentSpread);
+
+      if (left) {
+        leftSlot.innerHTML = `<img src="${left.src}" alt="${left.label}">`;
+        leftSlot.className = 'page-slot';
+      } else {
+        leftSlot.innerHTML = '';
+        leftSlot.className = 'page-slot empty';
+      }
+      if (right) {
+        rightSlot.innerHTML = `<img src="${right.src}" alt="${right.label}">`;
+        rightSlot.className = 'page-slot';
+      } else {
+        rightSlot.innerHTML = '';
+        rightSlot.className = 'page-slot empty';
+      }
+
+      document.getElementById('prev-btn').disabled = currentSpread === 0;
+      document.getElementById('next-btn').disabled = currentSpread >= totalSpreads - 1;
+      const ll = left ? left.label : '', rl = right ? right.label : '';
+      document.getElementById('page-title').textContent = ll && rl ? `${ll} · ${rl}` : (rl || ll);
+      document.getElementById('page-num').textContent = `${currentSpread + 1} / ${totalSpreads}`;
+
+      document.querySelectorAll('.thumb').forEach((el, i) => {
+        el.classList.toggle('active', i === currentSpread);
+        if (i === currentSpread) el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      });
     }
-
-    // 오른쪽 페이지
-    if (right) {
-      rightSlot.innerHTML = `<img src="${right.src}" alt="${right.label}">`;
-      rightSlot.className = 'page-slot';
-    } else {
-      rightSlot.innerHTML = '';
-      rightSlot.className = 'page-slot empty';
-    }
-
-    // 버튼 상태
-    document.getElementById('prev-btn').disabled = currentSpread === 0;
-    document.getElementById('next-btn').disabled = currentSpread >= totalSpreads - 1;
-
-    // 페이지 정보
-    const leftLabel = left ? left.label : '';
-    const rightLabel = right ? right.label : '';
-    const labelText = leftLabel && rightLabel ? `${leftLabel} · ${rightLabel}` : (rightLabel || leftLabel);
-    document.getElementById('page-title').textContent = labelText;
-    document.getElementById('page-num').textContent = `${currentSpread + 1} / ${totalSpreads}`;
-
-    // 썸네일 활성화
-    document.querySelectorAll('.thumb').forEach((el, i) => {
-      // spread에 속하는 페이지 인덱스
-      const [l, r] = getSpreadPages(i);
-      const isActive = i === currentSpread;
-      el.classList.toggle('active', isActive);
-      if (isActive) el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-    });
   }
 
   function changePage(dir) {
-    currentSpread = Math.max(0, Math.min(totalSpreads - 1, currentSpread + dir));
+    if (isMobile()) {
+      currentPage = Math.max(0, Math.min(pages.length - 1, currentPage + dir));
+    } else {
+      currentSpread = Math.max(0, Math.min(totalSpreads - 1, currentSpread + dir));
+    }
     render();
   }
 
-  // 썸네일 생성
+  // 썸네일 생성 (모바일: 페이지별, 데스크탑: spread별)
   function buildThumbnails() {
     const bar = document.getElementById('thumbnails');
-    for (let i = 0; i < totalSpreads; i++) {
-      const [left, right] = getSpreadPages(i);
-      const thumb = document.createElement('div');
-      thumb.className = 'thumb';
-      thumb.title = (() => {
-        if (!left) return right.label;
-        if (!right) return left.label;
-        return `${left.label} · ${right.label}`;
-      })();
-      const img = document.createElement('img');
-      img.src = right ? right.src : left.src;
-      img.alt = thumb.title;
-      thumb.appendChild(img);
-      thumb.addEventListener('click', () => { currentSpread = i; render(); });
-      bar.appendChild(thumb);
+    bar.innerHTML = '';
+    if (isMobile()) {
+      pages.forEach((p, i) => {
+        const thumb = document.createElement('div');
+        thumb.className = 'thumb';
+        thumb.title = p.label;
+        thumb.innerHTML = `<img src="${p.src}" alt="${p.label}">`;
+        thumb.addEventListener('click', () => { currentPage = i; render(); });
+        bar.appendChild(thumb);
+      });
+    } else {
+      for (let i = 0; i < totalSpreads; i++) {
+        const [left, right] = getSpreadPages(i);
+        const thumb = document.createElement('div');
+        thumb.className = 'thumb';
+        const label = !left ? right.label : !right ? left.label : `${left.label}·${right.label}`;
+        thumb.title = label;
+        thumb.innerHTML = `<img src="${right ? right.src : left.src}" alt="${label}">`;
+        thumb.addEventListener('click', () => { currentSpread = i; render(); });
+        bar.appendChild(thumb);
+      }
     }
   }
 
@@ -336,6 +354,9 @@
     const dx = e.changedTouches[0].clientX - touchStartX;
     if (Math.abs(dx) > 50) changePage(dx < 0 ? 1 : -1);
   });
+
+  // 화면 크기 변경 시 재구성
+  window.addEventListener('resize', () => { buildThumbnails(); render(); });
 
   buildThumbnails();
   render();
