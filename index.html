@@ -279,16 +279,20 @@
       if (left) {
         leftSlot.innerHTML = `<img src="${left.src}" alt="${left.label}">`;
         leftSlot.className = 'page-slot';
+        leftSlot.style.display = '';
       } else {
         leftSlot.innerHTML = '';
         leftSlot.className = 'page-slot empty';
+        leftSlot.style.display = 'none';
       }
       if (right) {
         rightSlot.innerHTML = `<img src="${right.src}" alt="${right.label}">`;
         rightSlot.className = 'page-slot';
+        rightSlot.style.display = '';
       } else {
         rightSlot.innerHTML = '';
         rightSlot.className = 'page-slot empty';
+        rightSlot.style.display = 'none';
       }
 
       document.getElementById('prev-btn').disabled = currentSpread === 0;
