@@ -581,7 +581,7 @@
         leftSlot.className = 'page-slot';
         leftSlot.style.overflowY = 'auto';
       } else {
-        leftSlot.innerHTML = `<img src="${p.src}" alt="${p.label}" style="width:100%;height:auto;display:block;">`;
+        leftSlot.innerHTML = `<img src="${p.src}" alt="${p.label}" style="width:100%;height:100%;object-fit:contain;display:block;">`;
         leftSlot.className = 'page-slot';
         leftSlot.style.overflowY = '';
       }
@@ -622,6 +622,7 @@
     } else {
       currentSpread = Math.max(0, Math.min(totalSpreads - 1, currentSpread + dir));
     }
+    fixSlotHeight();
     render();
   }
 
