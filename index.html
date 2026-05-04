@@ -233,6 +233,30 @@
       margin-left: 4px;
     }
 
+    /* 항렬 가로 행 */
+    .항렬-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      margin: 6px 0 4px;
+      flex-shrink: 0;
+    }
+    .항렬-box {
+      font-size: 0.64rem;
+      background: #ede5d0;
+      border: 1px solid #c4943a;
+      border-radius: 3px;
+      padding: 2px 6px;
+      color: #3a2010;
+    }
+    .항렬-box.highlight {
+      background: #c4943a;
+      color: #fff;
+      font-weight: bold;
+    }
+    .항렬-arrow { font-size: 0.7rem; color: #c4943a; }
+
     #page-info {
       text-align: center;
       padding: 12px;
@@ -334,186 +358,110 @@
 <div class="text-page">
   <h2>옥천전씨 모산파 — 가계도</h2>
   <div class="tree-wrap">
-
     <div class="tree-node">
-      <span class="tree-label oral">전섭(全聶) — 도시조, 환성군</span>
+      <span class="tree-label oral">전섭(全聶) 도시조·환성군</span>
       <span class="tree-connector">백제 온조왕 개국공신</span>
       <span class="oral-tag">구전</span>
     </div>
-    <div class="tree-node"><span class="tree-indent"></span><span class="tree-line">↓ (23세손)</span></div>
-
     <div class="tree-node">
-      <span class="tree-label">전학준(全學浚) — 시조</span>
+      <span class="tree-line">↓ 23세손</span>
+      <span class="tree-label">전학준(全學浚) 시조</span>
       <span class="tree-connector">고려, 동정(同正)</span>
       <span class="source-tag">족보</span>
     </div>
-    <div class="tree-node"><span class="tree-indent"></span><span class="tree-line">↓ (5세손)</span></div>
-
     <div class="tree-node">
-      <span class="tree-label highlight">전유(全侑) — 중시조, 관성군</span>
+      <span class="tree-line">↓ 5세손</span>
+      <span class="tree-label highlight">전유(全侑) 중시조·관성군</span>
       <span class="tree-connector">고려 충숙왕, 판도판서</span>
       <span class="source-tag">한국학중앙연구원</span>
     </div>
-    <div class="tree-node"><span class="tree-indent"></span><span class="tree-line">↓ 세 아들로 분파</span></div>
-
     <div class="tree-node">
-      <span class="tree-label">전광운 — 전서공파 파조 (장남)</span>
-      <span class="source-tag">족보·한국학중앙연구원</span>
+      <span class="tree-line">↓ 전서공파</span>
+      <span class="tree-label">전광운 — 전서공파 파조(장남)</span>
+      <span class="source-tag">족보</span>
     </div>
-    <div class="tree-node"><span class="tree-indent"></span><span class="tree-line">↓</span></div>
-
     <div class="tree-node">
+      <span class="tree-line">↓</span>
       <span class="tree-label">전희철(全希哲) 1425~1521</span>
-      <span class="tree-connector">단종 폐위 후 낙향, 절의</span>
+      <span class="tree-connector">단종 폐위 후 낙향·절의</span>
       <span class="source-tag">한국민족문화대백과</span>
     </div>
-    <div class="tree-node"><span class="tree-indent"></span><span class="tree-line">↓</span></div>
-
     <div class="tree-node">
+      <span class="tree-line">↓</span>
       <span class="tree-label">전결(全潔) — 모산파 형성</span>
-      <span class="tree-connector">16세기 말, 충북 영동군 모산리 정착</span>
+      <span class="tree-connector">16세기 말, 충북 영동군 모산리</span>
       <span class="source-tag">충북학아카이브</span>
     </div>
-    <div class="tree-node"><span class="tree-indent"></span><span class="tree-line">↓ (조선 후기)</span></div>
-
     <div class="tree-node">
+      <span class="tree-line">↓ 조선 후기</span>
       <span class="tree-label oral">파파실(파곡) 입향</span>
-      <span class="tree-connector">장수군 소금업 → 계북면 정착, 150년 전</span>
-      <span class="oral-tag">구전·지역사</span>
+      <span class="tree-connector">장수 소금업 → 계북면 정착</span>
+      <span class="oral-tag">구전</span>
     </div>
-    <div class="tree-node"><span class="tree-indent"></span><span class="tree-line">↓</span></div>
-
     <div class="tree-node">
+      <span class="tree-line">↓</span>
       <span class="tree-label">24세손 재현(在賢)</span>
       <span class="source-tag">파파실-옥천전씨 기록</span>
     </div>
-    <div class="tree-node"><span class="tree-indent"></span><span class="tree-line">↓</span></div>
-
-    <div class="tree-node">
-      <span class="tree-label">28대 — 구(九) 항렬</span>
-    </div>
-    <div class="tree-node"><span class="tree-indent"></span><span class="tree-line">↓</span></div>
-    <div class="tree-node">
-      <span class="tree-label">29대 — 병(炳) 항렬</span>
-    </div>
-    <div class="tree-node"><span class="tree-indent"></span><span class="tree-line">↓</span></div>
-    <div class="tree-node">
-      <span class="tree-label highlight">30대 — 규(圭)·종(鐘) 항렬 (현재)</span>
-    </div>
-
+  </div>
+  <div class="항렬-row">
+    <span class="항렬-box">28대 구(九)</span>
+    <span class="항렬-arrow">→</span>
+    <span class="항렬-box">29대 병(炳)</span>
+    <span class="항렬-arrow">→</span>
+    <span class="항렬-box highlight">30대 규(圭)·종(鐘) 현재</span>
   </div>
   <div class="message-box">백제의 개국부터 오늘까지 — 우린 하나다</div>
-  <p style="font-size:0.68rem; color:#9a7050; margin-top:10px; text-align:center;">
-    ✅ 객관적 출처 확인 &nbsp;|&nbsp; 🟤 구전·문중 전승
-  </p>
 </div>`;
 
   const HTML_비석 = `
 <div class="text-page">
   <h2>비석에 새겨진 두 이름</h2>
-  <p style="text-align:center; font-size:0.8rem; color:#8a6040; margin-bottom:16px;">
-    1925년, 서울 이문동 <span class="source-tag">객관적 사실</span>
+  <p style="text-align:center; font-size:0.65rem; color:#8a6040; margin-bottom:6px;">
+    1925년, 서울 이문동 전씨 시조 단소(壇所) 건립 <span class="source-tag">객관적 사실</span>
   </p>
 
   <div class="person-card">
-    <div>
-      <span class="person-name">전씨 시조 단소(壇所) 건립</span>
-    </div>
-    <p style="margin-top:8px;">
-      1925년, 서울 이문동에 전씨 시조를 기리는 단소가 세워졌습니다.
-      이 비석의 비문(碑文)을 지은 사람과 글씨를 쓴 사람이 주목됩니다.
-    </p>
+    <div><span class="person-name">의친왕 이강(李堈)</span><span class="person-year">비문 찬(撰)</span></div>
+    <p style="margin-top:4px;">고종 황제의 아들. 전씨 가문의 역사적 위상을 인정하여 직접 비문을 지었습니다.</p>
+  </div>
+
+  <div class="person-card">
+    <div><span class="person-name">위창 오세창(吳世昌)</span><span class="person-year">글씨 서(書)</span></div>
+    <p style="margin-top:4px;">3·1운동 민족대표 33인, 독립운동가이자 명필. 그의 글씨로 비석이 완성되었습니다.</p>
   </div>
 
   <hr class="divider">
 
-  <div class="person-card">
-    <div>
-      <span class="person-name">의친왕 이강(李堈)</span>
-      <span class="person-year">비문 찬(撰)</span>
-    </div>
-    <p style="margin-top:6px;">
-      고종 황제의 아들. 대한제국 황실의 일원으로,
-      전씨 가문의 역사적 위상을 인정하여 직접 비문을 지었습니다.
-    </p>
-  </div>
-
-  <div class="person-card">
-    <div>
-      <span class="person-name">위창 오세창(吳世昌)</span>
-      <span class="person-year">글씨 서(書)</span>
-    </div>
-    <p style="margin-top:6px;">
-      3·1운동 민족대표 33인 중 한 사람이자 서예가·독립운동가.
-      그의 글씨로 비석이 완성되었습니다.
-    </p>
-  </div>
-
-  <hr class="divider">
-
-  <p style="font-size:0.8rem; line-height:1.8;">
-    황실의 왕자가 비문을 짓고, 독립운동가가 글씨를 쓴 이 비석은
-    전씨 가문이 단순한 지방 성씨를 넘어 근대 한국사의 한 장면에
-    함께 새겨져 있음을 보여줍니다.
-  </p>
+  <p>황실의 왕자가 비문을 짓고, 독립운동가가 글씨를 쓴 이 비석은 전씨 가문이 단순한 지방 성씨를 넘어 근대 한국사의 한 장면에 함께 새겨져 있음을 보여줍니다.</p>
 
   <div class="message-box">"가문의 이름이 역사에 새겨지다"</div>
-
-  <p style="font-size:0.7rem; color:#9a7050; margin-top:12px;">
-    출처: 문중 기록·전씨 족보 관련 자료
-  </p>
+  <p style="font-size:0.6rem; color:#9a7050; margin-top:4px; text-align:center;">출처: 문중 기록·전씨 족보 관련 자료</p>
 </div>`;
 
   const HTML_조선인물 = `
 <div class="text-page">
   <h2>조선의 세 가지 충(忠)</h2>
-  <p style="text-align:center; font-size:0.78rem; color:#8a6040; margin-bottom:16px;">
-    전서공파 계통의 인물들 <span class="source-tag">한국민족문화대백과</span>
+  <p style="text-align:center; font-size:0.62rem; color:#8a6040; margin-bottom:6px;">
+    전서공파 계통 <span class="source-tag">한국민족문화대백과</span>
   </p>
 
   <div class="person-card">
-    <div>
-      <span class="person-name">전희철(全希哲)</span>
-      <span class="person-year">1425 ~ 1521</span>
-    </div>
-    <p style="margin-top:8px; font-size:0.8rem; line-height:1.7;">
-      단종이 폐위되던 날, 벼슬을 버리고 낙향했습니다.
-      영주 칠성루와 휴계재사에서 여생을 마쳤으며,
-      후대에 그의 절의(節義)가 추모되었습니다.
-    </p>
-    <p style="font-size:0.75rem; color:#7a5030; font-style:italic; margin-top:6px;">
-      "뜻을 굽히지 않는 것도 충이다"
-    </p>
+    <div><span class="person-name">전희철(全希哲)</span><span class="person-year">1425~1521</span></div>
+    <p style="margin-top:3px;">단종 폐위 후 벼슬을 버리고 낙향. 영주 칠성루에서 여생을 마치며 절의(節義)를 지켰습니다.</p>
+    <p style="font-size:0.62rem; color:#7a5030; font-style:italic; margin-top:2px;">"뜻을 굽히지 않는 것도 충이다"</p>
   </div>
 
   <div class="person-card">
-    <div>
-      <span class="person-name">전팽령(全彭齡)</span>
-      <span class="person-year">1480 ~ 1560 &nbsp; 호: 송정(松亭)</span>
-    </div>
-    <p style="margin-top:8px; font-size:0.8rem; line-height:1.7;">
-      1524년 별시문과 급제 후 형조·공조·성균관사성 등을 역임.
-      상주목사 재임 시 청렴한 치정으로
-      <strong>청백리(廉謹)</strong>에 선발되었습니다.
-    </p>
-    <p style="font-size:0.75rem; color:#7a5030; font-style:italic; margin-top:6px;">
-      "가장 가난한 목사가 가장 존경받았다"
-    </p>
+    <div><span class="person-name">전팽령(全彭齡)</span><span class="person-year">1480~1560 · 호: 송정(松亭)</span></div>
+    <p style="margin-top:3px;">1524년 별시문과 급제, 상주목사 재임 시 청렴한 치정으로 <strong>청백리(廉謹)</strong>에 선발되었습니다.</p>
+    <p style="font-size:0.62rem; color:#7a5030; font-style:italic; margin-top:2px;">"가장 가난한 목사가 가장 존경받았다"</p>
   </div>
 
   <div class="person-card">
-    <div>
-      <span class="person-name">전식(全湜)</span>
-      <span class="person-year">1563 ~ 1642 &nbsp; 호: 사서(沙西)</span>
-    </div>
-    <p style="margin-top:8px; font-size:0.8rem; line-height:1.7;">
-      유성룡·장현광의 문인. 임진왜란 때 <strong>의병을 일으켰으며</strong>
-      이후 예조정랑·대사간·예조참판·대사헌을 역임.
-      문집과 영정, 신도비가 현재까지 전해집니다.
-    </p>
-    <p style="font-size:0.75rem; color:#7a5030; font-style:italic; margin-top:6px;">
-      "나라가 흔들릴 때 전씨는 일어섰다"
-    </p>
+    <div><span class="person-name">전식(全湜)</span><span class="person-year">1563~1642 · 호: 사서(沙西)</span></div>
+    <p style="margin-top:3px;">유성룡·장현광의 문인. 임진왜란 때 <strong>의병을 일으켰으며</strong> 이후 대사헌을 역임. 문집·영정·신도비 현존.</p>
+    <p style="font-size:0.62rem; color:#7a5030; font-style:italic; margin-top:2px;">"나라가 흔들릴 때 전씨는 일어섰다"</p>
   </div>
 
   <div class="message-box">각자의 방식으로 — 그러나 같은 뿌리에서</div>
