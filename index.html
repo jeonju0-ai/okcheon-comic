@@ -439,6 +439,82 @@
   <p style="font-size:0.6rem; color:#9a7050; margin-top:4px; text-align:center;">출처: 문중 기록·전씨 족보 관련 자료</p>
 </div>`;
 
+  const HTML_소금길 = `
+<div class="text-page">
+  <h2>소금길을 걷다 — 전재현(全在賢)</h2>
+  <p style="text-align:center; font-size:0.62rem; color:#8a6040; margin-bottom:6px;">
+    24세손 · 1830~1886 <span class="source-tag">파파실-옥천전씨 기록</span>
+  </p>
+
+  <div class="person-card">
+    <div><span class="person-name">전재현(全在賢)</span><span class="person-year">1830 – 1886</span></div>
+    <p style="margin-top:3px;"><strong>15세</strong>에 집을 나서 보부상의 길에 들어섰습니다. 서해 천일염과 해조류를 등짐에 지고 내륙 산간 마을까지 거래하며 신용을 쌓았습니다.</p>
+    <p style="font-size:0.62rem; color:#7a5030; font-style:italic; margin-top:2px;">"고개 하나를 넘을 때마다 한 걸음이 쌓인다"</p>
+  </div>
+
+  <hr class="divider">
+  <h3>장계(長溪) 정착</h3>
+  <p>수십 년의 행상 끝에 전북 장수군 장계에 자리를 잡고 소금·해조류 유통업을 가업으로 세웠습니다. 파평윤씨(坡平尹氏)와 혼인하여 파파실(파곡)에 뿌리를 내렸습니다.</p>
+  <span class="oral-tag">구전</span>
+
+  <hr class="divider">
+  <h3>파파실의 시작</h3>
+  <p>그가 정착한 파파실(지금의 장수군 계북면 일대)은 이후 옥천전씨 모산파의 근거지가 됩니다. 한 소년의 담대한 한 발이 오늘날 수십 명의 후손을 남긴 씨앗이 되었습니다.</p>
+
+  <div class="message-box">소금 한 짐 — 뿌리 하나</div>
+</div>`;
+
+  const HTML_파파실사람들 = `
+<div class="text-page">
+  <h2>파파실의 사람들 — 28·29세손</h2>
+  <p style="text-align:center; font-size:0.61rem; color:#8a6040; margin-bottom:5px;">
+    전재현의 후손들 <span class="source-tag">파파실-옥천전씨 기록</span>
+  </p>
+
+  <h3>28세손 (구九 항렬)</h3>
+  <div class="person-card">
+    <span class="person-name">전정구</span>
+    <p>고등고시 행정·사법 양과 합격, 국회의원 역임. 법과 정치 양 분야를 아우른 인물.</p>
+  </div>
+  <div class="person-card">
+    <span class="person-name">전영구</span>
+    <p>기업인·장로. 사업과 신앙을 한 삶에 담았습니다.</p>
+  </div>
+  <div class="person-card">
+    <span class="person-name">전봉구</span>
+    <p>외과의사. 의술로 지역 사회에 헌신했습니다.</p>
+  </div>
+  <div class="person-card">
+    <span class="person-name">전흥구</span>
+    <p>농촌운동가. 농촌 계몽과 공동체 회복에 평생을 바쳤습니다.</p>
+  </div>
+  <div class="person-card">
+    <span class="person-name">전준구</span>
+    <p>교수, 국민훈장 수훈. 학문으로 나라에 기여했습니다.</p>
+  </div>
+  <div class="person-card">
+    <span class="person-name">전제구</span>
+    <p>냉간단조 수출 기업 경영. 한국 제조업의 해외 진출을 이끌었습니다.</p>
+  </div>
+  <div class="person-card">
+    <span class="person-name">전춘구</span>
+    <p>다국적기업 임원. 글로벌 무대에서 활약했습니다.</p>
+  </div>
+  <div class="person-card">
+    <span class="person-name">전은희</span>
+    <p>동화 작가. 이야기로 어린이들의 마음을 키웠습니다.</p>
+  </div>
+
+  <h3>29세손 (병炳 항렬)</h3>
+  <div class="person-card">
+    <div><span class="person-name">전종준</span><span class="person-year">미국 인권변호사</span></div>
+    <p style="margin-top:3px;">미국에서 국무장관 콜린 파월을 상대로 소송하여 승소. 국적법 헌법소원 <strong>4전 5기</strong> 끝에 승소, 이중국적의 문을 열었습니다.</p>
+    <span class="source-tag">파파실-옥천전씨 기록</span>
+  </div>
+
+  <div class="message-box">소금 장수의 후손들 — 각자의 자리에서 역사를 썼다</div>
+</div>`;
+
   const HTML_조선인물 = `
 <div class="text-page">
   <h2>조선의 세 가지 충(忠)</h2>
@@ -484,8 +560,10 @@
     { src: '옥천전씨모산파역사만화9.png',  label: '9화' },
     { src: '옥천전씨모산파역사만화10.png', label: '10화' },
     { src: '옥천전씨모산파역사만화11.png', label: '11화' },
+    { type: 'html', html: HTML_소금길,      label: '소금길' },
     { src: '옥천전씨모산파역사만화12.png', label: '12화' },
     { src: '옥천전씨모산파역사만화13.png', label: '13화' },
+    { type: 'html', html: HTML_파파실사람들, label: '파파실 사람들' },
     { src: '옥천전씨모산파역사만화14.png', label: '14화' },
   ];
 
